@@ -1,0 +1,45 @@
+spring:
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  kafka:
+    consumer:
+      topic: autorizar-venda-queue
+      groupId: autorizar-venda-queue-v1
+      bootstrap-server: 127.0.0.1:9092
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      max-poll-interval-ms: 4000
+
+    producer:
+      topic: autorizar-venda-queue
+      groupId: autorizar-venda-queue-v1
+      bootstrap-server: 127.0.0.1:9092
+      acksConfig: all
+      retriesConfig: 10
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: Postgres2023!
+    driver-class-name: org.postgresql.Driver
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+
+tribute-api:
+  url: localhost:8080
+
+sefaz-api:
+  url: localhost:8080
+
+canal-api:
+  url: localhost:8080
+
+
